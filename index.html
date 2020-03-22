@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Web Serial Code Lab</title>
+    <meta charset="utf-8" />
+    <meta name="codelab" content="getting-started-w-web-serial" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Redirect to HTTPS if HTTP is requested.
+      if (window.location.protocol === "http:") {
+        window.location.href = "https:" + window.location.href.substring(5);
+      }
+    </script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="./src/script.js" defer></script>
+  </head>
+  <body>
+    <header class="header">
+      <h1>VERTICAL SLIDER CONFIGURATOR</h1>
+    </header>
+    <main class="main">
+      <div id="notSupported">
+        Sorry, <b>Web Serial</b> is not supported on this device, make sure
+        you're running Chrome 78 or later and have enabled the
+        <code>#enable-experimental-web-platform-features</code> flag in
+        <code>chrome://flags</code>
+      </div>
+      <br />
+      <button id="butStopMQTTBridge" type="button">DISABLE MQTT</button>
+      <button id="butConnect" type="button">CONNECT SERIAL</button>
+      <br />
+      <br />
+
+      <!--  usually keep this item locked, if alarm is received, unlock   -->
+      <!--  upon pressing, if OK received, lock back again   -->
+      <button id="butUnlock" type="button">un-lock</button>
+      <!--  Do homing cycle  -->
+      <button id="butHome" type="button">Home</button>
+      <button id="butRebase" type="button">Zero Pos</button>
+      <br />
+      <br />
+      <label class="label" for="frate">SET FEED RATE</label><br />
+      <input type="number" id="frate" name="frate" placeholder="180" />
+      <input class="setEntry" id="setFeedRate" type="submit" value="set" />
+      <br />
+      <label class="label" for="bedlength">SET MAX TRAVEL</label><br />
+      <input type="number" id="fbedlength" name="fbedlength" placeholder="50" />
+      <input class="setEntry" id="setBedLength" type="submit" value="set" />
+      <br />
+      <br />
+      <button id="butTest" type="button">Test One Cycle</button>
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <label class="label" for="cmdSection">command</label><br />
+      <input type="text" id="cmdSection" name="cmdSection" />
+      <input class="setEntry" id="sendTypedCMD" type="submit" value="SEND" />
+      <br />
+      <br />
+      <strong>LAST COMMAND: </strong><br />
+      <pre id="lastCMD"></pre>
+      <br />
+      <strong>GRBL RESPONSE: </strong><br />
+      <pre id="log"></pre>
+      <br />
+      <br />
+      <!--       <strong>RECEIVED MQTT COMMAND: </strong><br />
+      <pre id="mqtt_log"></pre> -->
+    </main>
+  </body>
+</html>
